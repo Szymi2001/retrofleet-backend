@@ -54,7 +54,6 @@ const carImageRouter = require('./routes/carImage');
 const profileImageRouter = require('./routes/profileImage');
 const profileRouter = require('./routes/profile');
 const eventRouter = require('./routes/events');
-const logRouter = require('./routes/logs');
 const routeRouter = require('./routes/routes');
 const googlePlacesRouter = require('./routes/googlePlaces');
 
@@ -65,13 +64,9 @@ app.use('/carImage', carImageRouter);
 app.use('/profileImage', profileImageRouter);
 app.use('/profile', profileRouter);
 app.use('/event', eventRouter);
-app.use('/log', logRouter);
 app.use('/route', routeRouter);
 app.use('/googlePlaces', googlePlacesRouter);
 
-// https.createServer(options, app).listen(PORT, () => {
-//     console.log('Serwer działa na porcie: ' + process.env.PORT);
-// });
 app.listen(PORT, () => {
     console.log('Serwer działa na porcie: ' + process.env.PORT)
 });
