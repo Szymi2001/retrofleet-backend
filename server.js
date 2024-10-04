@@ -50,6 +50,7 @@ mongoose.connect(DATABASE_URI, {
 const userRouter = require('./routes/users');
 const fleetRouter = require('./routes/fleets');
 const serviceRouter = require('./routes/service');
+const fuelingRouter = require('./routes/fuelings');
 const carImageRouter = require('./routes/carImage');
 const profileImageRouter = require('./routes/profileImage');
 const profileRouter = require('./routes/profile');
@@ -60,6 +61,7 @@ const googlePlacesRouter = require('./routes/googlePlaces');
 app.use('/users', userRouter);
 app.use('/fleet', fleetRouter);
 app.use('/service', serviceRouter);
+app.use('/fueling', fuelingRouter);
 app.use('/carImage', carImageRouter);
 app.use('/profileImage', profileImageRouter);
 app.use('/profile', profileRouter);

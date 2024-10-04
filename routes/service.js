@@ -142,7 +142,6 @@ router.get('/getTotalPriceByMonth/:carId', async (req, res) => {
     const filteredServices = services.filter(service => {
       const serviceDate = new Date(service.isoDate);
       const serviceYear = serviceDate.getFullYear();
-      console.log(`Service year: ${serviceYear}`);
       return serviceYear === year;
     });
 
@@ -175,9 +174,6 @@ router.get('/getTotalPriceByMonth/:carId', async (req, res) => {
         totalPrice,
       }))
       .sort((a, b) => a.month - b.month);
-
-    // Wyświetlenie sumy wydatków miesięcznie
-    console.log('Total price by month:', totalPriceByMonth);
 
     res.status(200).json({
       totalPriceByMonth,
