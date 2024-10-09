@@ -22,20 +22,7 @@ const options = {
     cert: fs.readFileSync(certPath),
   };
 
-const allowedOrigins = [
-    'http://localhost:8100',
-]
-
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Niedozwolony dostęp do tego źródłą'))
-        }
-    },
-    credentials: true
-}));
+app.use(cors({ origin: 'http://localhost:8100' }));
 
 app.use(express.json())
 
