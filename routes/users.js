@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Nieprawidłowe hasło' });
     }
-
+    console.log('User authenticated:', user);
     res.status(200).json({ id: user._id });
   } catch (error) {
     console.error('Błąd podczas logowania:', error);
