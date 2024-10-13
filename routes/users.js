@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Nieprawidłowe hasło' });
     }
 
-    res.status(200).json({ message: 'Logowanie udane.', id: user._id });
+    res.status(200).json({ id: user._id });
   } catch (error) {
     console.error('Błąd podczas logowania:', error);
     res.status(500).json({ message: 'Wystąpił błąd serwera.' });
