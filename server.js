@@ -22,8 +22,7 @@ const options = {
     cert: fs.readFileSync(certPath),
   };
 
-app.use(cors({ origin: 'http://localhost:8100', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization'] }));
-app.options('*', cors());
+app.use(cors({ origin: '*'}));
 
 app.use(express.json())
 
