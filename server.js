@@ -9,18 +9,7 @@ const cors = require('cors')
 const app = express();
 
 //MongoDB
-const PORT = process.env.PORT || 3000;
 const DATABASE_URI = process.env.DATABASE_URI;
-
-// Ścieżki do certyfikatu i klucza
-const keyPath = path.join(__dirname, 'localhost.key');
-const certPath = path.join(__dirname, 'localhost.crt');
-
-// Certyfikat SSL
-const options = {
-    key: fs.readFileSync(keyPath),
-    cert: fs.readFileSync(certPath),
-  };
 
 app.use(cors({ 
     origin: '*',
@@ -60,8 +49,8 @@ app.use('/event', eventRouter);
 app.use('/route', routeRouter);
 app.use('/googlePlaces', googlePlacesRouter);
 
-app.listen(PORT, () => {
-    console.log('Serwer działa na porcie: ' + process.env.PORT)
+app.listen(() => {
+    console.log('Server is working...');
 });
 
 
