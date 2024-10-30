@@ -4,7 +4,7 @@ const router = express.Router();
 const https = require('https');
 
 //GooglePlaces API key
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
 router.use(express.json());
 
