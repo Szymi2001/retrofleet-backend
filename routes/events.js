@@ -5,12 +5,11 @@ const Event = require('../modules/event');
 router.use(express.json());
 
 router.post('/addEvent', async (req, res) => {
-  const { user_id, title, subTitle, startDate, startTime, endDate, endTime } = req.body;
+  const { user_id, title, startDate, startTime, endDate, endTime } = req.body;
 
   const event = new Event({
     user_id,
     title,
-    subTitle,
     startDate,
     startTime,
     endDate,
@@ -30,7 +29,7 @@ router.get('/getEvents/:userId', async (req, res) => {
 
   try {
     const events = await Event.find({ user_id: userId }).select(
-      'title subTitle startDate startTime endDate endTime -_id'
+      'title startDate startTime endDate endTime -_id'
     );
     res.status(200).json(events);
   } catch (err) {
