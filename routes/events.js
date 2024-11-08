@@ -5,12 +5,11 @@ const Event = require('../modules/event');
 router.use(express.json());
 
 router.post('/addEvent', async (req, res) => {
-  const { user_id, title, subTitle, startDate, startTime, endDate, endTime } = req.body;
+  const { user_id, title, startDate, startTime, endDate, endTime } = req.body;
 
   const event = new Event({
     user_id,
     title,
-    subTitle,
     startDate,
     startTime,
     endDate,
@@ -19,7 +18,15 @@ router.post('/addEvent', async (req, res) => {
 
   try {
     const newEvent = await event.save();
-    res.status(201).json(newEvent);
+    res.status(201).json({
+      _id: newEvent._id,
+      user_id: newEvent.user_id,
+      title: newEvent.title,
+      startDate: newEvent.startDate,
+      startTime: newEvent.startTime,
+      endDate: newEvent.endDate,
+      endTime: newEvent.endTime,
+    });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -30,7 +37,7 @@ router.get('/getEvents/:userId', async (req, res) => {
 
   try {
     const events = await Event.find({ user_id: userId }).select(
-      'title subTitle startDate startTime endDate endTime _id'
+      'title startDate startTime endDate endTime _id'
     );
     res.status(200).json(events);
   } catch (err) {
