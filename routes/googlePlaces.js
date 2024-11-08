@@ -29,6 +29,7 @@ router.get('/getCities', (req, res) => {
 
       apiRes.on('data', chunk => {
         data += chunk;
+        console.log('Raw data from Google API:', data);
       });
 
       apiRes.on('end', () => {
