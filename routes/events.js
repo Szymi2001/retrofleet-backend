@@ -30,7 +30,7 @@ router.get('/getEvents/:userId', async (req, res) => {
 
   try {
     const events = await Event.find({ user_id: userId }).select(
-      'title subTitle startDate startTime endDate endTime -_id'
+      'title subTitle startDate startTime endDate endTime _id'
     );
     res.status(200).json(events);
   } catch (err) {
@@ -42,11 +42,11 @@ router.delete('/deleteEvent/:eventId', async (req, res) => {
   const { eventId } = req.params;
 
   try {
-    const result = await Service.deleteOne({ _id: eventId });
+    const result = await Event.deleteOne({ _id: eventId });
     if (result.deletedCount === 0) {
-      return res.status(404).json({ message: 'Nie znaleziono serwisu.' });
+      return res.status(404).json({ message: 'Nie znaleziono wydarzenia.' });
     }
-    res.status(200).json({ message: 'Serwis został poprawnie usunięty.' });
+    res.status(200).json({ message: 'Wydarzenie zostało poprawnie usunięte.' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
