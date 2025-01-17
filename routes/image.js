@@ -63,10 +63,13 @@ router.get('/download/:userId', async (req, res) => {
         });
 
         // Mapowanie wyników na listę URL-i obrazów
-        const imageUrls = result.resources.map(resource => resource.secure_url);
+        const imageDetails = result.resources.map(resource => ({
+            carId: resource.public_id,
+            url: resource.secure_url
+        }));
 
         res.status(200).json({
-            images: imageUrls
+            images: imageDetails
         });
     } catch (error) {
         console.error('Błąd pobierania obrazów:', error);
