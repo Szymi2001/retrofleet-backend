@@ -74,9 +74,8 @@ router.get('/download/:userId', async (req, res) => {
     }
 });
 
-router.delete('/delete', async (req, res) => {
-    const userId = req.headers['user-id'];
-    const carId = req.headers['car-id'];
+router.delete('/delete/:userId/:carId', async (req, res) => {
+    const { userId, carId } = req.params;
 
     if (!userId || !carId) {
         return res.status(400).json({ message: 'Id użytkownika i pojazdu jest wymagane' });
