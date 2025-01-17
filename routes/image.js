@@ -74,4 +74,31 @@ router.get('/download/:userId', async (req, res) => {
     }
 });
 
+router.delete('/delete', async (req, res) => {
+    const userId = req.headers['user-id'];
+    const carId = req.headers['car-id'];
+
+    if (!userId || !carId) {
+        return res.status(400).json({ message: 'Id użytkownika i pojazdu jest wymagane' });
+    }
+
+    try {
+        const result = await cloudinary.uploader.destroy(
+            `uploads/${userId}/${carId}`,
+            {
+                resource_type: 'image'
+            }
+        );
+
+        if (result.result === 'ok') {
+            return res.status(200).json({ message: 'Plik został usunięty' });
+        } else {
+            return res.status(404).json({ message: 'Plik nie został znaleziony' });
+        }
+    } catch (error) {
+        console.error('Błąd usuwania pliku:', error);
+        return res.status(500).json({ message: 'Błąd usuwania pliku' });
+    }
+});
+
 module.exports = router;
