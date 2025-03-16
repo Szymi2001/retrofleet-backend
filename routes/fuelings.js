@@ -103,6 +103,7 @@ router.get('/getFueling/:carId', async (req, res) => {
 router.get('/getTotalPriceByMonth/:carId', async (req, res) => {
   const { carId } = req.params;
   const year = parseInt(req.query.year, 10);
+  console.log(year, carId);
 
   try {
     const fuelings = await Fueling.find({ car_id: carId });
@@ -129,7 +130,6 @@ router.get('/getTotalPriceByMonth/:carId', async (req, res) => {
       }
     });
 
-    // Dodanie miesięcy, które nie występują w danych
     for (let month = 1; month <= 12; month++) {
       if (!totalPriceMap.has(month)) {
         totalPriceMap.set(month, 0);
