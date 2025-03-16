@@ -2,21 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Fueling = require('../modules/fueling');
 
-const monthsMap = {
-  styczeń: 1,
-  luty: 2,
-  marzec: 3,
-  kwiecień: 4,
-  maj: 5,
-  czerwiec: 6,
-  lipiec: 7,
-  sierpień: 8,
-  wrzesień: 9,
-  październik: 10,
-  listopad: 11,
-  grudzień: 12,
-};
-
 router.use(express.json());
 
 router.post('/addFueling', async (req, res) => {
@@ -27,6 +12,7 @@ router.post('/addFueling', async (req, res) => {
     model,
     price,
     date,
+    isoDate,
     mileage,
     description,
     fuelType,
@@ -42,6 +28,7 @@ router.post('/addFueling', async (req, res) => {
     model,
     price,
     date,
+    isoDate,
     mileage,
     description,
     fuelType,

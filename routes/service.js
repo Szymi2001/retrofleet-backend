@@ -2,21 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Service = require('../modules/service');
 
-const monthsMap = {
-  styczeń: 1,
-  luty: 2,
-  marzec: 3,
-  kwiecień: 4,
-  maj: 5,
-  czerwiec: 6,
-  lipiec: 7,
-  sierpień: 8,
-  wrzesień: 9,
-  październik: 10,
-  listopad: 11,
-  grudzień: 12,
-};
-
 router.use(express.json());
 
 router.post('/addService', async (req, res) => {
