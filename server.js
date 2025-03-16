@@ -1,10 +1,10 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
-const mongoose = require('mongoose')
-const cors = require('cors')
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,21 +12,25 @@ const app = express();
 const DATABASE_URI = process.env.DATABASE_URI;
 const PORT = 3000;
 
-app.use(cors({ 
+app.use(
+  cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 
-app.use(express.json())
+app.use(express.json());
 
-mongoose.connect(DATABASE_URI, {
-}).then(() => {
-    console.log('Połączono z bazą MongoDB')
-}).catch(error => {
+mongoose
+  .connect(DATABASE_URI, {})
+  .then(() => {
+    console.log('Połączono z bazą MongoDB');
+  })
+  .catch(error => {
     console.error('Błąd połączenia z bazą danych:', error);
     process.exit(1);
-});
+  });
 
 const userRouter = require('./routes/users');
 const fleetRouter = require('./routes/fleets');
@@ -49,7 +53,5 @@ app.use('/route', routeRouter);
 app.use('/googlePlaces', googlePlacesRouter);
 
 app.listen(PORT, () => {
-    console.log(`Server is working on port: ${PORT}`);
+  console.log(`Server is working on port: ${PORT}`);
 });
-
-

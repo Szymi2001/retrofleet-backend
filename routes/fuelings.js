@@ -103,7 +103,6 @@ router.get('/getFueling/:carId', async (req, res) => {
 router.get('/getTotalPriceByMonth/:carId', async (req, res) => {
   const { carId } = req.params;
   const year = parseInt(req.query.year, 10);
-  console.log(year, carId);
 
   try {
     const fuelings = await Fueling.find({ car_id: carId });
